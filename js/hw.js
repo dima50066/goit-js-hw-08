@@ -82,3 +82,14 @@ const galleryItems = images.map((image) => {
   listItem.appendChild(link);
   gallery.appendChild(listItem);
 });
+
+gallery.addEventListener("click", (event) => {
+  event.preventDefault();
+  if (event.target.nodeName !== "IMG") return;
+
+  const largeImageURL = event.target.dataset.source;
+  const instance = basicLightbox.create(`
+    <img src="${largeImageURL}" width="800" height="600">
+  `);
+  instance.show();
+});
